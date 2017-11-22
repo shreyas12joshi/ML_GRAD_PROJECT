@@ -24,11 +24,13 @@ if __name__ == '__main__':
         for r in readers[1:]:
             r.next()
         # Merge content
+        # Here since all the headers are iterated over for all files as object has __iter __ method
+        # now everything is pointed to the next row in all the files
         for line in readers[0]:
-            file_name = line[0]
-            preds = weights[0] * np.array(map(float, line[1:]))
+            file_name = line[0] #index
+            preds = weights[0] * np.array(map(float, line[1:])) # all 9 product prob of first algo
             for i, r in enumerate(readers[1:]):
-                preds += weights[i+1] * np.array(map(float, r.next()[1:]))
+                preds += weights[i+1] * np.array(map(float, r.next()[1:])) # all 9 product prob of diff algo
             preds /= np.sum(weights)
             writer.writerow([file_name] + list(preds))
         # Close files

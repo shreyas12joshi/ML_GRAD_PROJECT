@@ -29,6 +29,7 @@ def load_data(path_train=consts.DATA_TRAIN_PATH, path_test=consts.DATA_TEST_PATH
     test = pd.read_csv(path_test)
     test_ids = test.id.values
     test = test.drop('id', axis=1)
+    test = test.drop('target', axis=1)
 
     return np.array(train, dtype=float), np.array(train_labels), np.array(test, dtype=float),\
         np.array(train_ids), np.array(test_ids)
@@ -62,7 +63,7 @@ def write_blender_data(path, file_name, predictions):
 
 def save_submission(path_sample_submission, output_file_path, predictions):
     sample = pd.read_csv(path_sample_submission)
-    submission = pd.DataFrame(predictions, index=sample.id.values, columns=sample.columns[1:])
+    submission = pd.DataFrame(predictions)#, index=sample.id.values, columns=sample.columns[1:])
     submission.to_csv(output_file_path, index_label='id')
 
 
