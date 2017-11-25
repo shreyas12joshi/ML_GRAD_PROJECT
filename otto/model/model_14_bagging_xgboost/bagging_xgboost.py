@@ -6,6 +6,11 @@ import numpy as np
 import logging
 import os
 
+import sys
+parentddir =os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir,os.path.pardir))
+sys.path.append(parentddir)
+
+
 from hyperopt import fmin, hp, tpe
 
 from sklearn.base import BaseEstimator
@@ -94,7 +99,7 @@ if __name__ == '__main__':
 
     if MODE == 'cv':
         scores, predictions = utils.make_blender_cv(clf, train, labels, calibrate=False)
-        print 'CV:', scores, 'Mean log loss:', np.mean(scores)
+        print( 'CV:', scores, 'Mean log loss:', np.mean(scores))
         utils.write_blender_data(consts.BLEND_PATH, MODEL_NAME + '.csv', predictions)
     elif MODE == 'submission':
         clf.fit(train, labels)
@@ -104,7 +109,7 @@ if __name__ == '__main__':
                               predictions)
     elif MODE == 'holdout':
         score = utils.hold_out_evaluation(clf, train, labels, calibrate=False)
-        print 'Log loss:', score
+        print( 'Log loss:', score)
     elif MODE == 'tune':
         # Objective function
         def objective(args):
@@ -113,8 +118,8 @@ if __name__ == '__main__':
                           row_subsample=row_subsample, min_loss_reduction=min_loss_reduction,
                           column_subsample=column_subsample, verbose=False)
             score = utils.hold_out_evaluation(clf, train, labels, calibrate=False)
-            print 'max_depth, min_child_weight, row_subsample, min_loss_reduction, column_subsample, logloss'
-            print args, score
+            print( 'max_depth, min_child_weight, row_subsample, min_loss_reduction, column_subsample, logloss')
+            print( args, score)
             return score
         # Searching space
         space = (
@@ -126,6 +131,6 @@ if __name__ == '__main__':
         )
 
         best_sln = fmin(objective, space, algo=tpe.suggest, max_evals=500)
-        print 'Best solution:', best_sln
+        print( 'Best solution:', best_sln)
     else:
-        print 'Unknown mode'
+        print( 'Unknown mode')

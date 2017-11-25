@@ -2,7 +2,7 @@ import os
 
 
 PROJECT_PATH = r"C:\Users\Jayakrishna Narra\Documents\GitHub\kaggle_otto\otto"
-
+#PROJECT_PATH = "/home/jn1711/Kaggle-otto/otto"
 # Data
 DATA_PATH = os.path.join(PROJECT_PATH, 'data')
 

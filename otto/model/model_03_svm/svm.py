@@ -18,7 +18,7 @@ from otto_utils import consts, utils
 
 
 MODEL_NAME = 'model_03_svm'
-MODE = 'cv'  # cv|submission|holdout|tune
+MODE = 'submission'  # cv|submission|holdout|tune
 
 # import data
 train, labels, test, _, _ = utils.load_data()

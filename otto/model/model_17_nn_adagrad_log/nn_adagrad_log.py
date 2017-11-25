@@ -11,6 +11,11 @@ import theano
 import theano.tensor as T
 import time
 
+import sys
+parentddir =os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir,os.path.pardir))
+sys.path.append(parentddir)
+
+
 from lasagne.layers import DenseLayer, DropoutLayer, InputLayer, get_all_params
 from lasagne.nonlinearities import rectify, softmax
 from lasagne.objectives import categorical_crossentropy, Objective
@@ -65,9 +70,9 @@ class NeuralNetwork(BaseEstimator):
             X_valid, y_valid = np.array([]), np.array([])
 
         if self.verbose > 5:
-            print 'X_train: %s, y_train: %s' % (X_train.shape, y_train.shape)
+            print( 'X_train: %s, y_train: %s' % (X_train.shape, y_train.shape))
             if self.use_valid:
-                print 'X_valid: %s, y_valid: %s' % (X_valid.shape, y_valid.shape)
+                print( 'X_valid: %s, y_valid: %s' % (X_valid.shape, y_valid.shape))
 
         # Prepare theano variables
         dataset = dict(
@@ -82,33 +87,33 @@ class NeuralNetwork(BaseEstimator):
         )
 
         if self.verbose > 0:
-            print "Building model and compiling functions..."
+            print( "Building model and compiling functions...")
         output_layer = self.build_model(dataset['input_dim'])
         iter_funcs = self.create_iter_functions(dataset, output_layer)
 
         if self.verbose > 0:
-            print "Starting training..."
+            print( "Starting training...")
         now = time.time()
         results = []
         try:
             for epoch in self.train(iter_funcs, dataset, output_layer):
                 if self.verbose > 1:
-                    print "Epoch {} of {} took {:.3f}s".format(
-                        epoch['number'], self.max_epochs, time.time() - now)
+                    print( "Epoch {} of {} took {:.3f}s".format(
+                        epoch['number'], self.max_epochs, time.time() - now))
                 now = time.time()
                 results.append([epoch['number'], epoch['train_loss'], epoch['valid_loss']])
                 if self.verbose > 1:
-                    print "  training loss:\t\t{:.6f}".format(epoch['train_loss'])
-                    print "  validation loss:\t\t{:.6f}".format(epoch['valid_loss'])
-                    print "  validation accuracy:\t\t{:.2f} %%".format(
-                        epoch['valid_accuracy'] * 100)
+                    print( "  training loss:\t\t{:.6f}".format(epoch['train_loss']))
+                    print( "  validation loss:\t\t{:.6f}".format(epoch['valid_loss']))
+                    print( "  validation accuracy:\t\t{:.2f} %%".format(
+                        epoch['valid_accuracy'] * 100))
 
                 if epoch['number'] >= self.max_epochs:
                     break
 
             if self.verbose > 0:
-                print 'Minimum validation error: %f (epoch %d)' % \
-                      (epoch['best_val_error'], epoch['best_val_iter'])
+                print( 'Minimum validation error: %f (epoch %d)' % \
+                      (epoch['best_val_error'], epoch['best_val_iter']))
 
         except KeyboardInterrupt:
             pass
@@ -283,7 +288,7 @@ if __name__ == '__main__':
 
     if MODE == 'cv':
         scores, predictions = utils.make_blender_cv(clf, train, labels, calibrate=False)
-        print 'CV:', scores, 'Mean log loss:', np.mean(scores)
+        print( 'CV:', scores, 'Mean log loss:', np.mean(scores))
         utils.write_blender_data(consts.BLEND_PATH, MODEL_NAME + '.csv', predictions)
     elif MODE == 'submission':
         clf.fit(train, labels)
@@ -293,6 +298,6 @@ if __name__ == '__main__':
                               predictions)
     elif MODE == 'holdout':
         score = utils.hold_out_evaluation(clf, train, labels, calibrate=False)
-        print 'Log loss:', score
+        print( 'Log loss:', score)
     else:
-        print 'Unknown mode'
+        print( 'Unknown mode')

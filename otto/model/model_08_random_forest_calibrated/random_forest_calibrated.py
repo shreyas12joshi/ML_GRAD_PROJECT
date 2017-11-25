@@ -4,6 +4,11 @@
 import numpy as np
 import os
 
+import sys
+parentddir =os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir,os.path.pardir))
+sys.path.append(parentddir)
+
+
 from sklearn import ensemble, feature_extraction, preprocessing
 from sklearn.calibration import CalibratedClassifierCV
 
@@ -31,7 +36,7 @@ clf = ensemble.ExtraTreesClassifier(n_jobs=5, n_estimators=600, max_features=20,
 
 if MODE == 'cv':
     scores, predictions = utils.make_blender_cv(clf, train, labels, calibrate=True)
-    print 'CV:', scores, 'Mean log loss:', np.mean(scores)
+    print( 'CV:', scores, 'Mean log loss:', np.mean(scores))
     utils.write_blender_data(consts.BLEND_PATH, MODEL_NAME + '.csv', predictions)
 elif MODE == 'submission':
     calibrated_classifier = CalibratedClassifierCV(clf, method='isotonic', cv=utils.get_cv(labels))
@@ -42,6 +47,6 @@ elif MODE == 'submission':
                           predictions)
 elif MODE == 'holdout':
     score = utils.hold_out_evaluation(clf, train, labels, calibrate=True)
-    print 'Log loss:', score
+    print( 'Log loss:', score)
 else:
-    print 'Unknown mode'
+    print( 'Unknown mode')

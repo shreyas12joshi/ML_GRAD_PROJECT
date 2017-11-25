@@ -4,6 +4,11 @@ import os
 import subprocess
 import shutil
 
+import sys
+parentddir =os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir,os.path.pardir))
+sys.path.append(parentddir)
+
+
 from sklearn import feature_extraction
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.metrics import log_loss
@@ -125,11 +130,11 @@ class RGF(BaseEstimator, ClassifierMixin):
                                                    max_tree=1200,  # Should be 1000
                                                    max_leaf_forest=6000  # Should be 10000
                                                    )
-            print 'Running', cmd % params_string
+            print ('Running', cmd % params_string)
             process = subprocess.Popen((cmd % params_string).split(), stdout=subprocess.PIPE)
             output = process.communicate()[0]
             if self.verbose:
-                print output
+                print( output)
 
             # Read list of generated models
             models = [m for m in os.listdir(self.files_location_output_) if ('%s_class_%s' % (prefix_model, i)) in m]
@@ -158,11 +163,11 @@ class RGF(BaseEstimator, ClassifierMixin):
                                                                          self.models[i]),
                                                    prediction_fn=preds_file
                                                    )
-            print 'Running', cmd % params_string
+            print( 'Running', cmd % params_string)
             process = subprocess.Popen((cmd % params_string).split(), stdout=subprocess.PIPE)
             output = process.communicate()[0]
             if self.verbose:
-                print output
+                print( output)
 
             # Read generated predictions
             preds = np.loadtxt(preds_file)
@@ -189,7 +194,7 @@ if __name__ == '__main__':
 
     if MODE == 'cv':
         scores, predictions = utils.make_blender_cv(clf, train, labels, calibrate=False)
-        print 'CV:', scores, 'Mean log loss:', np.mean(scores)
+        print ('CV:', scores, 'Mean log loss:', np.mean(scores))
         utils.write_blender_data(consts.BLEND_PATH, MODEL_NAME + '.csv', predictions)
     elif MODE == 'submission':
         clf.fit(train, labels)
@@ -199,6 +204,6 @@ if __name__ == '__main__':
                               predictions)
     elif MODE == 'holdout':
         score = utils.hold_out_evaluation(clf, train, labels, calibrate=False)
-        print 'Log loss:', score
+        print ('Log loss:', score)
     else:
-        print 'Unknown mode'
+        print ('Unknown mode')

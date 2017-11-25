@@ -5,6 +5,11 @@ It achieves around 0.52914588084 log loss on holdout set
 import numpy as np
 import os
 
+import sys
+parentddir =os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir,os.path.pardir))
+sys.path.append(parentddir)
+
+
 from sklearn import ensemble, feature_extraction, linear_model, preprocessing
 from sklearn.svm import LinearSVC
 
@@ -22,7 +27,7 @@ poly_feat = preprocessing.PolynomialFeatures(degree=2, interaction_only=False, i
 train = poly_feat.fit_transform(train, labels)
 test = poly_feat.transform(test)
 
-print train.shape
+print (train.shape)
 
 # transform counts to TFIDF features
 tfidf = feature_extraction.text.TfidfTransformer(smooth_idf=False)
@@ -34,7 +39,7 @@ feat_selector = LinearSVC(C=0.3, penalty='l1', dual=False)
 train = feat_selector.fit_transform(train, labels)
 test = feat_selector.transform(test)
 
-print train.shape
+print (train.shape)
 
 # encode labels
 lbl_enc = preprocessing.LabelEncoder()
@@ -50,7 +55,7 @@ clf = ensemble.BaggingClassifier(base_estimator=linear_clf, n_estimators=40,
 
 if MODE == 'cv':
     scores, predictions = utils.make_blender_cv(clf, train, labels)
-    print 'CV:', scores, 'Mean log loss:', np.mean(scores)
+    print ('CV:', scores, 'Mean log loss:', np.mean(scores))
     utils.write_blender_data(consts.BLEND_PATH, MODEL_NAME + '.csv', predictions)
 elif MODE == 'submission':
     clf.fit(train, labels)
@@ -60,8 +65,6 @@ elif MODE == 'submission':
                           predictions)
 elif MODE == 'holdout':
     score = utils.hold_out_evaluation(clf, train, labels)
-    print 'Log loss:', score
+    print ('Log loss:', score)
 else:
-    print 'Unknown mode'
-
-
+    print ('Unknown mode')
