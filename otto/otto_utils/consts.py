@@ -2,8 +2,7 @@ import os
 
 
 # Add your project path here
-PROJECT_PATH = r"C:\Users\Jayakrishna Narra\Documents\GitHub\kaggle_otto\otto"
-#PROJECT_PATH = "/home/jn1711/Kaggle-otto/otto"
+PROJECT_PATH = "../"     #go inside kaggle/otto/ 
 
 
 # Data
