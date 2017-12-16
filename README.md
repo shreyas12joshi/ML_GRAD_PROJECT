@@ -3,7 +3,7 @@ Graduate course project, Introduction to Machine Learning, NYU Tandon.
 
 **Problem statement:**
 
-A dataset with 93 features for more than 200,000 products. The objective is to build a predictive model which is able to distinguish between the main 10 product categories .
+Dataset from Otto Group (one of the world’s biggest e-commerce companies) with 93 features for more than 200,000 products. The objective is to build a predictive model which is able to distinguish between its  the main 10 product categories .
 
 ---------------------------
 ## Initial Analysis of the data
