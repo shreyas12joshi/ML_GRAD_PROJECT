@@ -1,10 +1,9 @@
-# Kaggle-otto
+# Otto product classification
 Graduate course project, Introduction to Machine Learning, NYU Tandon.
 
-Problem statement:
-https://www.kaggle.com/c/otto-group-product-classification-challenge
+**Problem statement:**
 
-A dataset with 93 features for more than 200,000 products. The objective is to build a predictive model which is able to distinguish between  main product categories.
+A dataset with 93 features for more than 200,000 products. The objective is to build a predictive model which is able to distinguish between the main 10 product categories .
 
 ---------------------------
 ## Initial Analysis of the data
