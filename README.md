@@ -13,7 +13,7 @@ The data is observed to check if all the features  are relevant for prediction. 
 ---------------------------
 ## Try to use different Machine Learning Models with different parameters for each repective model
 
-A table showing minimum Logloss is obtained after trying different parameters.
+A table showing minimum Logloss is obtained after trying different parameters. For simplicity,  models were taken from other open source projects to reduce the time in building the models.
 
 | Model          | Log Loss       | 
 | :---           |     :---:      |
