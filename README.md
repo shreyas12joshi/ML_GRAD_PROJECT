@@ -25,12 +25,13 @@ A table showing minimum Logloss is obtained after trying different parameters.
 ---------------------------
 ## Ensemble approach to try and combine the models
 
-Weighted average of SVM, Random forest, xgboost and nueral network was used to make prediction and the following results was obtained. The models selected here are arbitrary, for some cases the loss did not improve. The ensemble model can still be improved by changing models and parameters of each model by observing what makes the improvement on the log loss.
+Weighted average of SVM, Random forest, xgboost and nueral network was used to make prediction and the following results was obtained. The models selected here are arbitrary, for some cases the loss did not improve.
 
 | Model          | Log Loss       | 
 | :---           |     :---:      |
 | Ensemble model | 0.438593       |
 
 ---------------------------
+The ensemble approach can be improved by trying diffrent models and parameters. A comprehensive study has to be done to determine how they are affecting the loss.
 
 Go through the wiki for detailed instructions of the project. 
