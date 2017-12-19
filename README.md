@@ -23,7 +23,7 @@ A table showing minimum Logloss is obtained after trying different parameters. F
 | Random forest  | 0.531333       |
 
 ---------------------------
-## Ensemble approach to try and combine the models
+## Ensemble Learning approach to try and combine the models
 
 Weighted average of SVM, Random forest, xgboost and nueral network was used to make prediction and the following results was obtained. The models selected here are arbitrary, for some cases the loss did not improve.
 
