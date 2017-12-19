@@ -32,6 +32,6 @@ Weighted average of SVM, Random forest, xgboost and nueral network was used to m
 | Ensemble model | 0.438593       |
 
 ---------------------------
-The ensemble approach can be improved by trying diffrent models and parameters. A comprehensive study has to be done to determine how they are affecting the loss.
+The ensemble learning approach can be improved by trying diffrent models and parameters. A comprehensive study has to be done to determine how they are affecting the loss.
 
 Go through the wiki for detailed instructions of the project. 
