@@ -22,7 +22,7 @@ A table showing minimum Logloss is obtained after trying different algorithms.
 | Nueral Network | 0.523256       | 0.79
 | XG boost       | 0.531245       | 0.78
 | Random forest  | 0.501333       | 0.83
-----
+
 It can be observed from the table that random forests produce better results than any other model. But we still wanted to increase the accuracy and reduce the logloss. For that, Ensemble Learning approach was used.
 
 ---------------------------
