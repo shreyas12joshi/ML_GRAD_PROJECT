@@ -3,8 +3,8 @@ This is done as a part of Graduate Course Project, for Introduction to Machine L
 
 **Problem statement:**
 
-Dataset from Otto Group (one of the world’s biggest e-commerce companies) with 93 features for more than 200,000 products was considered. The objective is to build a predictive model which is able to distinguish between its the main 10 product categories. Given a product, a model should be able to predict what class does the produt belong to.
-The was generously made available by Otto Group and Kaggle.
+Otto Group is one of the world’s biggest e-commerce companies. Their data was generously made available by Otto Group and Kaggle. It has 200,000 different products 93 independent features. The objective is to build a predictive model which is able to classify the product into one of the 10 different categories.
+
 
 ---------------------------
 ## Initial Analysis of the data
