@@ -32,12 +32,8 @@ The method of combining the predictions depends on the choice of models used for
 Here's is an excellent link to understanding more about [ensemble learning](https://mlwave.com/kaggle-ensembling-guide/) and why it works.
 
 What we are using here is bagging where weighted average of SVM, Random Forest, xgboost and Nueral Network predictions was used to make final stage predictions. The model with highest individual accuracy will get more weightage than the other models. There is no limit on the number of models to be used in first stage. 
-With the four models we used, and then using Bagging, our results ere improved. The new LogLoss was 0.438509 with the new accuracy was 0.88. 
+With the four models we used, and then using Bagging, our results ere improved. The new LogLoss was **0.438509** with the new accuracy was **0.88**. 
 The results can be further improved by using more models in the first stage to capture more details in the data. The highest Logloss obtained in this problem according to Kaggle is 0.38.
-
-| Model          | Log Loss       | 
-| :---           |     :---:      |
-| Ensemble model | 0.438593       |
 
 ---------------------------
 
