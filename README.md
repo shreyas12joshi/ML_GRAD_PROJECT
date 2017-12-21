@@ -1,5 +1,5 @@
 # Otto product classification
-This is done as a part of Graduate Course Project, for Introduction to Machine Learning.
+This is done as a part of Graduate Course Project, for Introduction to Machine Learning EL-GY 9123.
 
 **Problem statement:**
 
